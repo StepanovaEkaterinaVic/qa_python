@@ -40,7 +40,7 @@ class TestBooksCollector:
         assert collector.books_genre == initial_books_genre
 
     # Тестирование метода set_book_genre
-        # Установка валидного жанра
+    # Установка валидного жанра
     @pytest.mark.parametrize('name', ['Задача трех тел'])
     def test_set_book_genre_valid_genre(self, name):
         collector = BooksCollector()
@@ -60,7 +60,7 @@ class TestBooksCollector:
         assert collector.books_genre[name] == original_genre
 
         # Тестирование метода get_book_genre
-            # Использование валидного жанра
+        # Использование валидного жанра
 
     def test_get_book_genre_valid_genre(self, setup_books_collector):
         collector = setup_books_collector
@@ -68,26 +68,40 @@ class TestBooksCollector:
         assert genre == 'Фантастика'
 
         # Узнать жанр несуществующей книги
+
     def test_get_book_genre_non_existing_book(self, setup_books_collector):
         collector = setup_books_collector
         genre = collector.get_book_genre('Неизвестная книга')
         assert genre is None
 
     # Тестирование метода get_books_with_specific_genre
-        # Проверяем, что выводятся книги определенного жанра
+    # Проверяем, что выводятся книги определенного жанра
     def test_get_books_with_specific_genre_valid_genre(self, setup_books_collector):
         collector = setup_books_collector
         books = collector.get_books_with_specific_genre('Фантастика')
         assert books == ['Аватар', 'Солярис']
 
         # Проверяем, что возвращается пустой список, если такого жанра нет
+
     def test_get_books_with_specific_genre_invalid_genre(self, setup_books_collector):
         collector = setup_books_collector
         books = collector.get_books_with_specific_genre('Романы')
         assert books == []
 
         # Проверяем, что возвращается пустой список, если нет книг такого жанра
+
     def test_get_books_with_specific_genre_empty_book(self, setup_books_collector):
         collector = setup_books_collector
         books = collector.get_books_with_specific_genre('Комедии')
         assert books == []
+
+    # Тестирование метода get_books_genre
+    @pytest.mark.parametrize("title, genre", [
+        ('Аватар', 'Фантастика'),
+        ('Солярис', 'Фантастика'),
+        ('Лучший сыщик', 'Детективы')
+    ])
+    def test_get_books_genre_is_correct(self, setup_books_collector, title, genre):
+        collector = setup_books_collector
+        collector.set_book_genre(title, genre)
+        assert collector.get_books_genre()[title] == genre
