@@ -72,3 +72,22 @@ class TestBooksCollector:
         collector = setup_books_collector
         genre = collector.get_book_genre('Неизвестная книга')
         assert genre is None
+
+    # Тестирование метода get_books_with_specific_genre
+        # Проверяем, что выводятся книги определенного жанра
+    def test_get_books_with_specific_genre_valid_genre(self, setup_books_collector):
+        collector = setup_books_collector
+        books = collector.get_books_with_specific_genre('Фантастика')
+        assert books == ['Аватар', 'Солярис']
+
+        # Проверяем, что возвращается пустой список, если такого жанра нет
+    def test_get_books_with_specific_genre_invalid_genre(self, setup_books_collector):
+        collector = setup_books_collector
+        books = collector.get_books_with_specific_genre('Романы')
+        assert books == []
+
+        # Проверяем, что возвращается пустой список, если нет книг такого жанра
+    def test_get_books_with_specific_genre_empty_book(self, setup_books_collector):
+        collector = setup_books_collector
+        books = collector.get_books_with_specific_genre('Комедии')
+        assert books == []
