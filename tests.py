@@ -37,4 +37,23 @@ class TestBooksCollector:
         collector.add_new_book(book_name)
         assert collector.books_genre == initial_books_genre
 
+    # Тестирование метода set_book_genre
+        # Установка валидного жанра
+    @pytest.mark.parametrize('name', ['Задача трех тел'])
+    def test_set_book_genre_valid_genre(self, name):
+        collector = BooksCollector()
+        genre = collector.genre[0]
+        collector.add_new_book(name)
+        collector.set_book_genre(name, genre)
+        assert collector.books_genre == {name: genre}
+
+        # Установка невалидного жанра
+    @pytest.mark.parametrize('name, invalid_genre', [('Репка', 'Садоводство')])
+    def test_set_book_genre_invalid_genre(self, name,  invalid_genre):
+        collector = BooksCollector()
+        collector.add_new_book(name)
+        original_genre = collector.books_genre.get(name)
+        collector.set_book_genre(name, invalid_genre)
+        assert collector.books_genre[name] == original_genre
+
 
