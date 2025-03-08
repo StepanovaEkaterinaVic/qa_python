@@ -105,3 +105,10 @@ class TestBooksCollector:
         collector = setup_books_collector
         collector.set_book_genre(title, genre)
         assert collector.get_books_genre()[title] == genre
+
+    # Тестирование метода get_books_for_children
+    def test_get_books_for_children_true_genre(self, setup_books_collector):
+        collector = setup_books_collector
+        expected_books = ['Аватар', 'Солярис', 'Три кота']
+        books_for_children = collector.get_books_for_children()
+        assert books_for_children == expected_books
