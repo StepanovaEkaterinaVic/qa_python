@@ -112,3 +112,10 @@ class TestBooksCollector:
         expected_books = ['Аватар', 'Солярис', 'Три кота']
         books_for_children = collector.get_books_for_children()
         assert books_for_children == expected_books
+
+    # Тестирование метода add_book_in_favorites
+    def test_add_book_in_favorites_new_book(self, setup_books_collector):
+        collector = setup_books_collector
+        collector.add_book_in_favorites('Три кота')
+        expected_favorites = ['Три кота']
+        assert collector.favorites == expected_favorites
