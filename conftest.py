@@ -16,3 +16,16 @@ def setup_books_collector():
     collector.set_book_genre('Три кота', 'Мультфильмы')
     return collector
 
+
+@pytest.fixture
+def setup_books_collector_for_favorites_books():
+    collector = BooksCollector()
+    collector.add_new_book('Задача трех тел')
+    collector.add_new_book('Первый кот на Луне')
+    collector.add_new_book('Горе от ума')
+    collector.set_book_genre('Задача трех тел', 'Фантастика')
+    collector.set_book_genre('Первый кот на Луне', 'Фантастика')
+    collector.set_book_genre('Горе от ума', 'Комедии')
+    collector.add_book_in_favorites('Задача трех тел')
+    collector.add_book_in_favorites('Горе от ума')
+    return collector
