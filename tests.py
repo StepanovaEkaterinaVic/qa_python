@@ -119,3 +119,11 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Три кота')
         expected_favorites = ['Три кота']
         assert collector.favorites == expected_favorites
+
+    # Тестирование метода delete_book_from_favorites (Удаление существующей книги из избранного)
+    def test_delete_book_from_favorites_existing_book(self, setup_books_collector):
+        collector = setup_books_collector
+        collector.delete_book_from_favorites('Три кота')
+        expected_favorites = []
+        assert collector.favorites == expected_favorites
+
