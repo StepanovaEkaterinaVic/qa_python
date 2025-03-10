@@ -130,5 +130,4 @@ class TestBooksCollector:
     # Тестирование метода get_list_of_favorites_books (Получить список избранных книг)
     def test_get_list_of_favorites_books_true(self, setup_books_collector_for_favorites_books):
         collector = setup_books_collector_for_favorites_books
-        favorites_books = collector.favorites
-        assert favorites_books == ['Задача трех тел', 'Горе от ума']
+        assert collector.get_list_of_favorites_books() == ['Задача трех тел', 'Горе от ума']
